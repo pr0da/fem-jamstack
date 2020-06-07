@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <IdentityContextProvider url="https://jamstack.netlify.com">
+    <IdentityContextProvider url="https://jamstack-pr0da.netlify.com">
       <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{

@@ -1,4 +1,4 @@
-require("dorenv").config()
+require("dotenv").config()
 
 exports.handler = (event, _, callback) => {
   const mailgun = require("mailgun-js")
