@@ -1,7 +1,20 @@
 import React from "react"
 import { Link } from "gatsby"
+import { useIdentityContext } from "react-netlify-identity"
 
-const Profile: React.FC = () => {
+interface Props {
+  onLogout: () => void
+}
+
+const Profile: React.FC<Props> = props => {
+  const { onLogout } = props
+  const identity = useIdentityContext()
+  const { isLoggedIn, user } = identity
+
+  if (!isLoggedIn) {
+    return null
+  }
+
   return (
     <div className="bg-moon-gray flex pa2 justify-between items-center">
       <nav className="flex">
@@ -20,7 +33,12 @@ const Profile: React.FC = () => {
           See Your Base
         </Link>
       </nav>
-      <span>show login status</span>
+      <span>
+        Logged in as {user?.user_metadata?.full_name}
+        <button type="button" onClick={onLogout}>
+          Logout
+        </button>
+      </span>
     </div>
   )
 }
