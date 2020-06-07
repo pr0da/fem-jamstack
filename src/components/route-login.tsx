@@ -1,23 +1,14 @@
 import React from "react"
-import { RouteComponentProps, Redirect } from "@reach/router"
-import { useIdentityContext } from "react-netlify-identity"
+import { useAuth } from "../context/auth-context"
+import { RouteComponentProps } from "@reach/router"
 
-interface Props extends RouteComponentProps {
-  onLoginRequest: () => void
-}
-
-const RouteLogin: React.FC<Props> = props => {
-  const { onLoginRequest } = props
-  const identity = useIdentityContext()
-
-  if (identity?.isLoggedIn) {
-    return <Redirect to="/dashboard/secret" replace />
-  }
+const RouteLogin: React.FC<RouteComponentProps> = props => {
+  const { login } = useAuth()
 
   return (
     <>
       <h1>Login or signup</h1>
-      <button onClick={onLoginRequest}>Log In</button>
+      <button onClick={login}>Log In</button>
     </>
   )
 }

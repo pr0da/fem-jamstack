@@ -8,9 +8,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { IdentityContextProvider } from "react-netlify-identity-widget"
 
 import Header from "./header"
+import { AppProviders } from "../context"
 import "./layout.css"
 import "tachyons"
 
@@ -26,7 +26,7 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <IdentityContextProvider url="https://jamstack-pr0da.netlify.app">
+    <AppProviders>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </footer>
       </div>
-    </IdentityContextProvider>
+    </AppProviders>
   )
 }
 
